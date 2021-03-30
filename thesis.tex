@@ -2,7 +2,7 @@
 %%% Thesis
 %%%
 %%% Template Author:	Malte Hellmeier
-%%% URL:						https://github.com/mhellmeier/LaTeX-Thesis-Template
+%%% URL:				https://github.com/mhellmeier/LaTeX-Thesis-Template
 %%%
 % !TeX spellcheck = en_US 
 
@@ -111,16 +111,15 @@
 	Some information about the content. You can make your text \textbf{bold} or \emph{italic}. You are also able to make some inline math (like $f(x)=m*x+b$ or $\frac{1}{2}$) or coding fonts (\texttt{yourCustomMethod()}). If you want to add additional sources, you can try to cite them directly in the text, like the popular publication \citet{hawking.1973}, or at the end of your sentence \citep[p.~1]{hawking.1973}. You are also able to make a blockquote:
 	\blockquote{\grqq The result of design-science research in \acs{IS} is, by definition, a purposeful IT artifact created to address an important organizational problem. It must be described effectively, enabling its implementation and application in an appropriate domain\grqq\ \citep[p.~82]{hevner.2004}.}
 	
-	Sometimes you want to put additional information in a footnote\footnote{Great! You found the footnote!} or just a clickable URL\urlfootnote{https://github.com/mhellmeier/LaTeX-Thesis-Template}. I also added a crossref command like \seclink{sec:introduction}{Introduction} (you can click on the word \grqq \seclink{sec:introduction}{Introduction}\grqq). This is also possible for figures and tables, like \imglink{fig:figure1} or \tablelink{tab:table2}.
+	Sometimes you want to put additional information in a footnote\footnote{Great! You found the footnote!} or just a clickable URL\urlfootnote{https://github.com/mhellmeier/LaTeX-Thesis-Template}. I also added a crossref command like \seclink{sec:introduction}{Introduction} (you can click on the word \grqq \seclink{sec:introduction}{Introduction}\grqq). This is also possible for figures and tables, like \imglink{fig:figure1} or \tablelink{tab:table2}.\todo{Another ToDo option}
+	
+	\todo[inline]{Individual ToDo for hints during editing.}
 	
 	When working with acronyms, simply put them in the \texttt{acronyms.tex} file. Then you can use them, like \ac{AI} or \ac{ML}. They will be defined at their first usage. If you add \ac{AI} and \ac{ML} again, it will only show the short form. But you can force to use the long form of \acl{AI}, too.
 	
 	
 	\subsection{Tables, Figures \& Source Code}
-	
-	In the following, an example table, image and source code is presented.
-	\bigskip
-	
+
 	\begin{figure}[!htb]
 		\centering
 		\includegraphics[width=1\textwidth]{images/example-image}
