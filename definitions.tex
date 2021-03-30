@@ -1,0 +1,140 @@
+% ****************************** %
+% ******** Definitions ********* %
+% ****************************** %
+
+% title & author
+\title{\textbf{Thesis}}
+\author{Your Name}
+
+
+%\setlength{\parskip}{0.2cm} % space between paragraphs 
+\setlength{\parindent}{0cm} % supress indent at the beginning of a new paragraph
+\linespread{1.5} % add a 1.5 line spacing
+\newcounter{pageCounter}
+
+% start sections on a new page
+\makeatletter
+\renewcommand{\sectionlinesformat}[4]{%
+	\ifstr{#1}{section}{\clearpage}{}%
+	\@hangfrom{\hskip #2#3}{#4}%
+}
+\makeatother
+
+% don't add appendix subsections to TOC
+\appto\appendix{\addtocontents{toc}{\protect\setcounter{tocdepth}{1}}}
+% reinstate the correct level for list of tables and figures
+\appto\listoffigures{\addtocontents{lof}{\protect\setcounter{tocdepth}{1}}}
+\appto\listoftables{\addtocontents{lot}{\protect\setcounter{tocdepth}{1}}}
+
+% commands for links in the document
+\newcommand\seclink[2]{\hyperref[#1]{#2}}
+\newcommand\imglink[1]{\autoref{#1}}
+\newcommand\tablelink[1]{\autoref{#1}}
+\newcommand\urlfootnote[1]{\footnote{\url{#1}}}
+
+% custom header and footer
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\slshape\nouppercase{\leftmark}}
+\fancyfoot[R]{\thepage}
+
+% prevent footnotes from splitting over several pages
+\interfootnotelinepenalty=10000
+
+% table definitions
+% table caption
+\makeatletter
+\def\LT@makecaption#1#2#3{%
+	\multicolumn{\LT@cols}{|c|}{\cellcolor{gray!40}\textbf{#2: }\textbf{#3}}%%%
+}
+\makeatother
+
+% change treshhold for blockquotes
+\SetBlockThreshold{1}
+
+% allow lowercase acronyms in text but uppercase first letter in the list of abbreviations
+% source: https://tex.stackexchange.com/a/70894/160825
+\makeatletter
+\newif\if@in@acrolist
+\AtBeginEnvironment{acronym}{\@in@acrolisttrue}
+\newrobustcmd{\LU}[2]{\if@in@acrolist#1\else#2\fi}
+\newcommand{\ACF}[1]{{\@in@acrolisttrue\acf{#1}}}
+\makeatother
+
+% colouring source code
+% source: https://stackoverflow.com/a/3175141/2056125
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+	language=Java,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\small\ttfamily},
+	numbers=left,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{gray},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=false,
+	postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+	tabsize=3,
+	xleftmargin=5.0pt,
+	xrightmargin=11.5pt
+}
+
+% define legal for enumeration in every level
+\newlist{legal}{enumerate}{10}
+\setlist[legal]{label*=\arabic*.}
+
+
+% change URL visited text in the list of references
+\DefineBibliographyStrings{english}{
+	urlseen = {Accessed:} 
+}
+% try to create MISQ citation style
+% source: https://github.com/pcbouman-eur/misq-latex-style
+\renewcommand*{\nameyeardelim}{\addspace}
+\let\oldcitet\citet
+\renewcommand{\citet}[1]{\textsc{\oldcitet{#1}}} % make family name upper case in \citet
+
+\renewcommand*{\newunitpunct}{\addcomma\space}
+
+\DeclareNameAlias{sortname}{family-given}
+\DeclareDelimFormat[bib,biblist]{nametitledelim}{\addperiod\space}
+
+\renewcommand*{\intitlepunct}{\addspace}
+
+\renewbibmacro*{volume+number+eid}{%
+	\setunit{\addspace}%
+	\printtext[parens]{%
+		\printfield{volume}%
+		\setunit*{\addcolon}%
+		\printfield{number}}%
+	\setunit{\addcomma\space}%
+	\printfield{eid}}
+
+\DeclareFieldFormat{doi}{%
+	\mkbibparens{%
+		doi\addcolon\space
+		\ifhyperref
+		{\href{https://doi.org/#1}{\nolinkurl{#1}}}
+		{\nolinkurl{#1}}}}
+
+\renewbibmacro*{doi+eprint+url}{%
+	\setunit{\addspace}%
+	\iftoggle{bbx:doi}
+	{\printfield{doi}}
+	{}%
+	\newunit\newblock
+	\iftoggle{bbx:eprint}
+	{\usebibmacro{eprint}}
+	{}%
+	\newunit\newblock
+	\iftoggle{bbx:url}
+	{\usebibmacro{url+urldate}}
+	{}}

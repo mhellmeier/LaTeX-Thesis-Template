@@ -1,0 +1,255 @@
+%%%
+%%% Thesis
+%%%
+%%% Template Author:	Malte Hellmeier
+%%% URL:						https://github.com/mhellmeier/LaTeX-Thesis-Template
+%%%
+% !TeX spellcheck = en_US 
+
+% ****************************** %
+% ********** Preambel ********** %
+% ****************************** %
+\documentclass[
+	12pt,
+	a4paper,
+	american,
+	oneside
+	]{scrartcl}
+
+% Add your packages in the packages.tex file
+\include{packages}
+
+% Add your custom preamble code in the definitions.tex file
+\include{definitions}
+
+% Research question command
+\newcommand\researchquestion{How should a LaTeX template be designed to work for your thesis?}
+
+% ******************************** %
+% ********** Document ********** %
+% ******************************** %
+\begin{document}
+	% Force LaTeX to never go over the right margin
+	\sloppy
+	
+	% ***** Front Page *****
+	\pagenumbering{Roman}
+	\include{front-page}
+	\cleardoublepage
+	
+	% ***** Table of Contents *****
+	\setcounter{page}{2}
+	\begin{spacing}{1}
+		\tableofcontents
+	\end{spacing}
+	
+	
+	% ***** List of Abbreviations *****
+	\clearpage
+	\markboth{List of Abbreviations}{List of Abbreviations}
+	\phantomsection
+	\addcontentsline{toc}{section}{List of Abbreviations}
+	\section*{List of Abbreviations}
+	\begin{spacing}{1}
+		\input{acronyms}
+	\end{spacing}
+	
+	
+	% ***** List of Figures ***** 
+	\begin{spacing}{1}
+		\clearpage
+		\renewcommand{\listfigurename}{List of Figures}
+		\markboth{List of Figures}{List of Figures}
+		\phantomsection
+		\addcontentsline{toc}{section}{List of Figures}
+		\listoffigures
+	\end{spacing}
+	
+	
+	% ***** List of Tables *****
+	\begin{spacing}{1} 
+		\clearpage
+		\renewcommand{\listtablename}{List of Tables}
+		\markboth{List of Tables}{List of Tables}
+		\phantomsection
+		\addcontentsline{toc}{section}{List of Tables}
+		\listoftables
+	\end{spacing}
+	
+	
+	\clearpage
+	\setcounter{pageCounter}{\value{page}}
+	\pagenumbering{arabic}
+	
+	
+	% ********************************
+	% ********* Introduction *********
+	% ********************************
+	\FloatBarrier
+	\section{Introduction}\label{sec:introduction}
+	Hello everyone! This thesis template is made for a seminar, bachelor, or master thesis. I will try to give you some examples of how to make your customer things. You will find them in the \seclink{sec:anotherSection}{Example Section} (see section \ref{sec:anotherSection}). More information, credits, references, license etc. can be found in the GitHub Repository\urlfootnote{https://github.com/mhellmeier/LaTeX-Thesis-Template}.
+	
+	
+	% ********************************
+	% ****** Literature Review *******
+	% ********************************
+	\clearpage
+	\FloatBarrier
+	\section{Literature Review}\label{sec:literatureReview}
+	
+	You can add your custom \ac{RQ} and use it in your document with \texttt{\textbackslash researchquestion}: \emph{\researchquestion}
+	
+	
+	% ********************************
+	% ****** Example Section ********
+	% ********************************
+	\clearpage
+	\FloatBarrier
+	\section{Example Chapter / Section}\label{sec:anotherSection}
+	
+	\subsection{Content}
+	Some information about the content. You can make your text \textbf{bold} or \emph{italic}. You are also able to make some inline math (like $f(x)=m*x+b$ or $\frac{1}{2}$) or coding fonts (\texttt{yourCustomMethod()}). If you want to add additional sources, you can try to cite them directly in the text, like the popular publication \citet{hawking.1973}, or at the end of your sentence \citep[p.~1]{hawking.1973}. You are also able to make a blockquote:
+	\blockquote{\grqq The result of design-science research in \acs{IS} is, by definition, a purposeful IT artifact created to address an important organizational problem. It must be described effectively, enabling its implementation and application in an appropriate domain\grqq\ \citep[p.~82]{hevner.2004}.}
+	
+	Sometimes you want to put additional information in a footnote\footnote{Great! You found the footnote!} or just a clickable URL\urlfootnote{https://github.com/mhellmeier/LaTeX-Thesis-Template}. I also added a crossref command like \seclink{sec:introduction}{Introduction} (you can click on the word \grqq \seclink{sec:introduction}{Introduction}\grqq). This is also possible for figures and tables, like \imglink{fig:figure1} or \tablelink{tab:table2}.
+	
+	When working with acronyms, simply put them in the \texttt{acronyms.tex} file. Then you can use them, like \ac{AI} or \ac{ML}. They will be defined at their first usage. If you add \ac{AI} and \ac{ML} again, it will only show the short form. But you can force to use the long form of \acl{AI}, too.
+	
+	
+	\subsection{Tables, Figures \& Source Code}
+	
+	In the following, an example table, image and source code is presented.
+	\bigskip
+	
+	\begin{figure}[!htb]
+		\centering
+		\includegraphics[width=1\textwidth]{images/example-image}
+		\caption{Add a Caption for the Image}
+		\label{fig:figure1}
+	\end{figure}
+
+	\begin{minipage}{\linewidth}
+		\linespread{1}
+		\begin{lstlisting}[caption={Hello World in Java},captionpos=b,label=source:helloWorld]
+public class HelloWorld {
+	
+	public static void main (String[] args)	{
+		// Old but Gold!
+		System.out.println("Hello World!");
+	}
+
+}
+		\end{lstlisting}
+	\end{minipage}
+
+	\small
+	\begin{longtable}{|c|c|p{0.74\textwidth}|}
+		\hline
+		\caption{Add a Caption / Headline for your Table}\label{tab:table2}\\
+		\hline
+		\multicolumn{1}{|c|}{\cellcolor{gray!40}\textbf{No.}} & \multicolumn{1}{c|}{\cellcolor{gray!40}\textbf{Name}} & \multicolumn{1}{c|}{\cellcolor{gray!40}\textbf{Description}} \\ \hline
+		\multicolumn{3}{|c|}{\cellcolor{gray!40}Multicolumn 1}\\  \hline
+		1  & Category 1 & Add your description here \\ \hline
+		2 & Category 2 & Lorem ipsum dolor sit amet, consetetur sadipscing elitr \\  \hline
+		\multicolumn{3}{|c|}{\cellcolor{gray!40}Multicolumn 2} \\  \hline
+		3 & Category 3 & Lorem ipsum dolor sit amet, consetetur sadipscing elitr \\  \hline
+		4 & Category 4 & Lorem ipsum dolor sit amet, consetetur sadipscing elitr \\  \hline
+	\end{longtable}
+
+	\begin{landscape}
+		\small
+		\begin{longtable}{|c|c|p{20cm}|}
+			\hline
+			\caption{Landscape Table}\label{tab:table1}\\
+			\hline
+			\multicolumn{1}{|c|}{\cellcolor{gray!40}\textbf{No.}} & \multicolumn{1}{c|}{\cellcolor{gray!40}\textbf{Name}} & \multicolumn{1}{c|}{\cellcolor{gray!40}\textbf{Description}} \\
+			1  & Category 1 & Add your description here \\ \hline
+			2 & Category 2 & Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. \\  \hline
+			\multicolumn{3}{|c|}{\cellcolor{gray!40}Multicolumn} \\  \hline
+			3 & Category 3 & Lorem ipsum dolor sit amet, consetetur sadipscing elitr \\  \hline
+			4 & Category 4 & Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. \\  \hline
+			5 & Category 5 & Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. \\  \hline
+		\end{longtable}
+	\end{landscape}
+
+	
+	\subsection{This is a Subsection}
+	
+	\lipsum
+	
+	\subsubsection{This is a Subsubsection}
+	
+	\lipsum
+	
+	% ********************************
+	% ********** Discussion **********
+	% ********************************
+	\clearpage
+	\FloatBarrier
+	\section{Discussion}\label{sec:discussion}
+	
+	\lipsum
+	
+	% ********************************
+	% ********** Concluson **********
+	% ********************************
+	\clearpage
+	\FloatBarrier
+	\section{Conclusion}\label{sec:conclusion}
+	
+	\lipsum
+	
+	% ********************************
+	% ********** References **********
+	% ********************************
+	\clearpage
+	\FloatBarrier
+	\markboth{References}{References}
+	\phantomsection
+	\addcontentsline{toc}{section}{References}
+	
+	% Removes parentheses around date / year
+	% source: https://tex.stackexchange.com/a/40710/160825
+	\xpatchbibmacro{date+extradate}{%
+		\printtext[parens]%
+	}{%
+		\setunit{\addperiod\space}%
+		\printtext%
+	}{}{}
+	
+	\printbibliography
+	
+	
+	% ********************************
+	% *********** Appendix **********
+	% ********************************
+	\FloatBarrier
+	\appendix
+	\section{Appendix}
+	\markboth{Appendix}{Appendix}
+	
+	Add your content.
+	
+	\subsection{Subsection in Appendix}
+	
+	Add your content.
+	
+	\subsubsection{Another Level}
+	
+	Add your content.
+	
+	
+	
+	% ********************************
+	% ******** Certification **********
+	% ********************************
+	\section*{Certification}
+	\markboth{Certification}{Certification}
+	``Your individual certification (made this work on your own etc.).''
+	\paragraph{}$~~$\\
+	\paragraph{}$~~$\\
+	%Your City, \today\\
+	\noindent\rule{5cm}{.4pt}\hfill\rule{5cm}{.4pt}\par
+	\noindent Place, Date \hfill Signature 
+
+\end{document}

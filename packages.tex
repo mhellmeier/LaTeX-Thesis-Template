@@ -1,0 +1,61 @@
+% ****************************** %
+% ********** Packages ********** %
+% ****************************** %
+
+\usepackage[top=2.5cm, 
+			bottom=2.5cm,
+			left=2.5cm,
+			right=2.5cm
+			]{geometry}														% for page margins
+\usepackage{lipsum}													  % lorem ipsum dummy text
+\usepackage{pdflscape}												% for landscape pages (alternativ without PDF rotation: lscape)
+\usepackage[onehalfspacing]{setspace} 					  % for line spacing
+\usepackage[australian]{babel} 									 % set language
+\usepackage[utf8]{inputenc}      								 % text is inserted in UTF-8
+\usepackage[T1]{fontenc}         								   % use modern font encoding
+\usepackage{lmodern}												 % use modern font
+\usepackage{fancyhdr}												 % custom fancy header and footer
+\usepackage{graphicx}            									  % useful graphic tool
+\usepackage{tikz}														  % graphic tricks
+\usepackage{array}               										 % for better tables
+\usepackage{longtable}           									   % for tables, that span across multiple pages
+\usepackage{nicefrac}            										% for nicer frations like 1/2
+\usepackage{units}               										  % for nice printing of units like N or km/h
+\usepackage{textcomp}            									  % for \textdegree to obtain °
+\usepackage{enumitem}												  % enumeration in every level (legal)
+\usepackage[autostyle,style=american]{csquotes}			% references, cites, ...
+\usepackage{amsmath}												  % for mathamatic equations
+\usepackage{xpatch}														% for customizations
+\usepackage[
+	backend=biber,
+	natbib=true,
+	style=authoryear,
+	giveninits=true,
+	eprint=false,
+	doi=false,
+	isbn=false,
+	url=false,
+	urldate=long,
+	dateabbrev=false,
+	date=year,
+	labeldate=year,
+	dashed=false,
+	maxbibnames=99,
+	maxcitenames=2,
+	uniquelist=false
+]{biblatex} % references
+\addbibresource{literature.bib}
+\usepackage{float}				 											% for floatings
+\usepackage[printonlyused]{acronym} 						   % for acronyms
+\usepackage{todonotes}			 									   % tool for todos | HINT: add [disable] option to disable without manual removal
+\usepackage{multirow}			 										 % insert multi rows in tables
+\usepackage{listings}			 										   % insert source code
+\usepackage{color}				 											% insert source code
+\usepackage{xcolor,colortbl}											% table cell coloring
+\usepackage{tabularx}			 										  % for special tables
+\usepackage{caption}													  % caption package
+\usepackage{arydshln}			 										  % for dashed table lines
+\usepackage[section]{placeins}	 									 % for placing floats in the correct section
+\usepackage[pdfpagelabels=true,									   % for interactive PDFs; always load hyperref at the end
+			hidelinks
+			]{hyperref}
